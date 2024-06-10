@@ -54,11 +54,14 @@ export default async function Home() {
             typeof course['Course Image'].alt === 'undefined'
           )
             return null
+          console.log(course['Course Image'].url)
           return (
             <Link href={`/${course.id}`} key={course.id}>
               <div className="w-full h-full rounded-md relative group overflow-hidden">
                 <Image
-                  src={course['Course Image'].url!}
+                  src={`https://beautypointcollege.vercel.app${course[
+                    'Course Image'
+                  ].url!}`}
                   fill
                   alt={course['Course Image'].alt!}
                   className="object-cover rounded-md group-hover:scale-110 duration-700"
