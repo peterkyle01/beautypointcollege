@@ -45,6 +45,7 @@ export default async function CourseDetails({ params }: { params: { courseId: st
           <div className="w-full h-[30rem] relative">
             <Image
               src={`https://beautypointcollege.vercel.app${course['Course Image'].url!}`}
+              unoptimized
               fill
               alt={course['Course Image'].alt!}
               className="object-cover"

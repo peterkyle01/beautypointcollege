@@ -41,6 +41,7 @@ export default async function Home() {
           <Image
             src={'/image1.jpg'}
             fill
+            unoptimized
             className="object-cover rounded-md"
             alt="image of beauty point students"
           />
@@ -59,9 +60,7 @@ export default async function Home() {
             <Link href={`/${course.id}`} key={course.id}>
               <div className="w-full h-full rounded-md relative group overflow-hidden">
                 <Image
-                  src={`https://beautypointcollege.vercel.app${course[
-                    'Course Image'
-                  ].url!}`}
+                  src={`https://beautypointcollege.vercel.app${course['Course Image'].url!}`}
                   fill
                   alt={course['Course Image'].alt!}
                   className="object-cover rounded-md group-hover:scale-110 duration-700"
