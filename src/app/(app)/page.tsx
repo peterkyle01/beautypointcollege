@@ -27,7 +27,7 @@ export default async function Home() {
           </h1>
           <h2 className="my-6 text-base text-neutral-500 md:pr-5 md:text-lg">
             Beauty Point College is a universally accredited institution committed to the
-            development and delivery of innovative, high quality education systems for the Hair and
+            development and delivery of innovative,high quality education systems for the Hair and
             Beauty Industry. The courses we offer have been carefully designed to give you the edge
             in the Cosmetology Industry and to be a successful professional.
           </h2>
