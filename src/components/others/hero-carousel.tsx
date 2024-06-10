@@ -19,7 +19,7 @@ export default function HeroCarousel({ images }: { images: Hero[] }) {
             if (typeof img === 'number') return null
             return (
               <CarouselItem key={img.id} className="w-full h-[35rem] relative">
-                <Image src={img.url!} fill alt={img.alt!} unoptimized />
+                <Image src={img.url!} fill alt={img.alt!} unoptimized className='object-cover'/>
               </CarouselItem>
             )
           }),
