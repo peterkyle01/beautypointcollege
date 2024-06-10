@@ -19,7 +19,7 @@ export default async function Footer() {
       <div className="grid h-auto w-full grid-cols-1 gap-2 md:grid-cols-3 bg-sky-900 px-2 md:px-10 pt-6">
         <div className="h-72 w-full">
           <h1 className="text-3xl md:text-4xl font-black text-white my-6">Beauty Point College</h1>
-          <div className="flex gap-5 py-2">
+          <div className="flex gap-2 py-2">
             <Link
               href={'/'}
               className="text-sm flex items-center gap-1 font-bold tracking-wider text-rose-400"
@@ -37,7 +37,7 @@ export default async function Footer() {
           </div>
 
           <div className="h-20 w-full md:pr-6">
-            <p className="text-white">
+            <p className="text-white text-sm md:text-base">
               We don&apos;t compromise on quality,we have well trained tutors,our prices are very
               affordable and high graduation rate Travel opportunities for students Placement of a
               job is highly guaranteed
