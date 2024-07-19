@@ -22,10 +22,8 @@ export default async function Navbar() {
         <NavMenu courses={courses} />
       </div>
       <div className="flex flex-1 items-center justify-center">
-        <Link href={'https://app.zangupay.com/login'} target="_blank">
-          <Link href={'https://students.beautypoint.ac.ke/'}>
-            <Button>Apply Now!</Button>
-          </Link>
+        <Link href="/registration">
+          <Button>Apply Now!</Button>
         </Link>
       </div>
       <div className="flex h-full w-20 items-center justify-center text-primary md:hidden">
