@@ -1,4 +1,5 @@
 import type { CollectionConfig } from 'payload/types'
+import { Course } from './Course'
 
 export const Student: CollectionConfig = {
   slug: 'student',
@@ -7,11 +8,13 @@ export const Student: CollectionConfig = {
       type: 'row',
       fields: [
         {
-          name: 'First Name',
+          label: 'First Name',
+          name: 'first_name',
           type: 'text',
         },
         {
-          name: 'Second Name',
+          label: 'Second Name',
+          name: 'second_name',
           type: 'text',
         },
       ],
@@ -20,11 +23,27 @@ export const Student: CollectionConfig = {
       type: 'row',
       fields: [
         {
-          name: 'Admission Number',
+          label: 'Admission Number',
+          name: 'admission_number',
           type: 'number',
+          admin: {
+            readOnly: true,
+          },
+          hooks: {
+            beforeChange: [
+              ({ value }) => {
+                if (value) {
+                  return value
+                } else {
+                  return Math.floor(Math.random() * (2400000 - 2100000 + 1)) + 2100000
+                }
+              },
+            ],
+          },
         },
         {
-          name: 'Phone Number',
+          label: 'Phone Number',
+          name: 'phone_number',
           type: 'number',
         },
       ],
@@ -48,6 +67,65 @@ export const Student: CollectionConfig = {
             {
               label: 'Female',
               value: 'female',
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'row',
+      fields: [
+        {
+          label: 'National Identity Number',
+          name: 'national_id',
+          type: 'number',
+        },
+        {
+          name: 'Gurdian Phone Number',
+          type: 'number',
+        },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'Couse Details',
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'Course Name',
+              type: 'relationship',
+              relationTo: Course.slug,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'group',
+      name: 'Finance',
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'Total Billed',
+              type: 'relationship',
+              admin: {
+                readOnly: true,
+              },
+              relationTo: Course.slug,
+              filterOptions: ({ data }) => {
+                return {}
+              },
+            },
+            {
+              name: 'Total Paid',
+              type: 'number',
+              admin: {
+                readOnly: true,
+              },
             },
           ],
         },

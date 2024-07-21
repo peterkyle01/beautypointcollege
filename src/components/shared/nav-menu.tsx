@@ -46,9 +46,9 @@ export function Menu({ courses }: { courses: Course[] }) {
           </NavigationMenuContent>
         </NavigationMenuItem>
         <NavigationMenuItem>
-          <Link href="/gallery" legacyBehavior passHref>
+          <Link href="/portal" legacyBehavior passHref>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-              Gallery
+              Portal
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

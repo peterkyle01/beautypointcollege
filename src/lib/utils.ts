@@ -15,22 +15,6 @@ export const studentFormSchema = z.object({
     .number()
     .min(99999999, { message: 'Few numbers' })
     .max(999999999, { message: 'Too many numbers' }),
-  date_of_birth: z.date(),
-  gender: z.enum(['Male', 'Female']),
-  gurdian_full_name: z.string().min(1, { message: 'Name must be more than one character.' }),
-  gurdian_phone_number: z.coerce
-    .number()
-    .min(99999999, { message: 'Few numbers' })
-    .max(999999999, { message: 'Too many numbers' }),
-  hear_about_us: z.enum([
-    'Referral',
-    'Facebook',
-    'Website',
-    'Google',
-    'Media',
-    'Sign Board',
-    'Other',
-  ]),
 })
 
 export type TstudentFormSchema = z.infer<typeof studentFormSchema>

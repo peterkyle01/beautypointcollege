@@ -10,7 +10,6 @@ export interface Config {
   collections: {
     course: Course;
     faculty: Faculty;
-    finance: Finance;
     student: Student;
     hero: Hero;
     media: Media;
@@ -127,15 +126,6 @@ export interface Faculty {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "finance".
- */
-export interface Finance {
-  id: number;
-  updatedAt: string;
-  createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "student".
  */
 export interface Student {
@@ -146,6 +136,15 @@ export interface Student {
   'Phone Number'?: number | null;
   Email?: string | null;
   Gender?: ('male' | 'female') | null;
+  'National Identity Number'?: number | null;
+  'Gurdian Phone Number'?: number | null;
+  'Couse Details'?: {
+    'Course Name'?: (number | null) | Course;
+  };
+  Finance?: {
+    'Total Billed'?: (number | null) | Course;
+    'Total Paid'?: number | null;
+  };
   updatedAt: string;
   createdAt: string;
 }
