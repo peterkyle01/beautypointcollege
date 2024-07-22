@@ -12,6 +12,14 @@ export async function getCourses() {
   return courses
 }
 
+export async function getStudents() {
+  const payload = await getPayloadHMR({ config })
+  const { docs: students } = await payload.find({
+    collection: 'student',
+  })
+  return students
+}
+
 export async function getCourse({ courseId }: { courseId: string }) {
   const payload = await getPayloadHMR({ config })
   const course = await payload.findByID({
@@ -19,6 +27,19 @@ export async function getCourse({ courseId }: { courseId: string }) {
     id: courseId,
   })
   return course
+}
+
+export async function getTransaction({ adm }: { adm: string }) {
+  const payload = await getPayloadHMR({ config })
+  const transaction = await payload.find({
+    collection: 'transaction',
+    where: {
+      Student: {
+        equals: adm,
+      },
+    },
+  })
+  return transaction.docs
 }
 
 export async function getHeroImages() {

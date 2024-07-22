@@ -9,10 +9,10 @@ import { s3Storage } from '@payloadcms/storage-s3'
 
 import { Users } from './collections/Users'
 import { Course } from './collections/Course'
-import { Faculty } from './collections/Faculty'
 import { Student } from './collections/Student'
 import { Hero } from './collections/Hero'
 import { Media } from './collections/Media'
+import { Transaction } from './collections/Transaction'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -21,7 +21,7 @@ export default buildConfig({
   admin: {
     user: Users.slug,
   },
-  collections: [Course, Faculty, Student, Hero, Media, Users],
+  collections: [Course, Student, Transaction, Hero, Media, Users],
   editor: lexicalEditor({}),
   // plugins: [payloadCloud()], // TODO: Re-enable when cloud supports 3.0
   secret: process.env.PAYLOAD_SECRET || '',

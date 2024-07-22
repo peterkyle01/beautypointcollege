@@ -1,5 +1,7 @@
 import type { CollectionConfig } from 'payload/types'
 import { Course } from './Course'
+import { getCourse, getTransaction } from '@/lib/actions'
+import PDF from '@/components/others/pdf'
 
 export const Student: CollectionConfig = {
   slug: 'student',
@@ -24,7 +26,7 @@ export const Student: CollectionConfig = {
       fields: [
         {
           label: 'Admission Number',
-          name: 'admission_number',
+          name: 'id',
           type: 'number',
           admin: {
             readOnly: true,
@@ -88,15 +90,36 @@ export const Student: CollectionConfig = {
     },
     {
       type: 'group',
-      name: 'Couse Details',
+      label: 'Couse Details',
+      name: 'couse_details',
       fields: [
         {
           type: 'row',
           fields: [
             {
-              name: 'Course Name',
+              label: 'Course Name',
+              name: 'course_name',
               type: 'relationship',
               relationTo: Course.slug,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: 'array',
+      name: 'Exams',
+      fields: [
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'Marks',
+              type: 'number',
+            },
+            {
+              name: 'Remarks',
+              type: 'text',
             },
           ],
         },
@@ -110,21 +133,57 @@ export const Student: CollectionConfig = {
           type: 'row',
           fields: [
             {
-              name: 'Total Billed',
-              type: 'relationship',
+              name: 'Total Paid',
+              type: 'text',
               admin: {
                 readOnly: true,
               },
-              relationTo: Course.slug,
-              filterOptions: ({ data }) => {
-                return {}
+              hooks: {
+                beforeChange: [
+                  async ({ data }) => {
+                    try {
+                      const res = await getTransaction({ adm: data?.id.toString() })
+                      return res.reduce((acc, curr) => acc + curr.Amount, 0)
+                    } catch (error) {
+                      return 'No Course'
+                    }
+                  },
+                ],
               },
             },
             {
-              name: 'Total Paid',
-              type: 'number',
+              name: 'Total Billed',
+              type: 'text',
               admin: {
                 readOnly: true,
+              },
+              hooks: {
+                beforeChange: [
+                  async ({ data }) => {
+                    try {
+                      const {
+                        fees_structure: {
+                          admission_fee,
+                          starter_kit,
+                          first_installment,
+                          second_installment,
+                          internal_exams,
+                          uniform_and_id_card,
+                        },
+                      } = await getCourse({ courseId: data?.couse_details.course_name })
+                      return (
+                        admission_fee +
+                        starter_kit +
+                        first_installment +
+                        second_installment +
+                        internal_exams +
+                        uniform_and_id_card
+                      ).toString()
+                    } catch (error) {
+                      return 'No Course'
+                    }
+                  },
+                ],
               },
             },
           ],

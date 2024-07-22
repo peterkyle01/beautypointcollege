@@ -9,8 +9,10 @@
 export interface Config {
   collections: {
     course: Course;
+    academic: Academic;
     faculty: Faculty;
     student: Student;
+    transaction: Transaction;
     hero: Hero;
     media: Media;
     users: User;
@@ -29,19 +31,19 @@ export interface Config {
  */
 export interface Course {
   id: number;
-  'Course Image': number | Media;
+  course_image: number | Media;
   Type?: ('diploma' | 'certificate') | null;
-  'Course Name'?: string | null;
-  'Course Infomation'?: string | null;
-  'Duration In Months'?: number | null;
-  'Total External Examinations'?: number | null;
-  'Fees Structure'?: {
-    'Admission Fee'?: number | null;
-    'Starter Kit'?: number | null;
-    'First Installment'?: number | null;
-    'Second Installment'?: number | null;
-    'Internal exams'?: number | null;
-    'Uniform and ID Card'?: number | null;
+  course_name?: string | null;
+  course_information?: string | null;
+  duration_in_months?: number | null;
+  total_external_examinations?: number | null;
+  fees_structure?: {
+    admission_fee?: number | null;
+    starter_kit?: number | null;
+    first_installment?: number | null;
+    second_installment?: number | null;
+    internal_exams?: number | null;
+    uniform_and_id_card?: number | null;
   };
   'Course Syllabus'?: {
     Topics?:
@@ -111,6 +113,22 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "academic".
+ */
+export interface Academic {
+  id: number;
+  Exams?:
+    | {
+        Marks?: number | null;
+        Remarks?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "faculty".
  */
 export interface Faculty {
@@ -129,22 +147,40 @@ export interface Faculty {
  * via the `definition` "student".
  */
 export interface Student {
-  id: number;
-  'First Name'?: string | null;
-  'Second Name'?: string | null;
-  'Admission Number'?: number | null;
-  'Phone Number'?: number | null;
+  id: number | null;
+  first_name?: string | null;
+  second_name?: string | null;
+  phone_number?: number | null;
   Email?: string | null;
   Gender?: ('male' | 'female') | null;
-  'National Identity Number'?: number | null;
+  national_id?: number | null;
   'Gurdian Phone Number'?: number | null;
   'Couse Details'?: {
     'Course Name'?: (number | null) | Course;
   };
+  Exams?:
+    | {
+        Marks?: number | null;
+        Remarks?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   Finance?: {
-    'Total Billed'?: (number | null) | Course;
-    'Total Paid'?: number | null;
+    'Total Paid'?: string | null;
+    'Total Billed'?: string | null;
   };
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "transaction".
+ */
+export interface Transaction {
+  id: number;
+  Student?: (number | null) | Student;
+  Code?: string | null;
+  Amount?: number | null;
   updatedAt: string;
   createdAt: string;
 }

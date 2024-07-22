@@ -7,7 +7,8 @@ export const Course: CollectionConfig = {
   },
   fields: [
     {
-      name: 'Course Image',
+      label: 'Course Image',
+      name: 'course_image',
       type: 'upload',
       relationTo: 'media',
       required: true,
@@ -30,54 +31,48 @@ export const Course: CollectionConfig = {
           ],
         },
         {
-          name: 'Course Name',
+          label: 'Course Name',
+          name: 'course_name',
           type: 'text',
         },
       ],
     },
     {
-      name: 'Course Infomation',
+      label: 'Course Infomation',
+      name: 'course_information',
       type: 'textarea',
     },
     {
       type: 'row',
       fields: [
         {
-          name: 'Duration In Months',
+          label: 'Duration In Months',
+          name: 'duration_in_months',
           type: 'number',
         },
         {
-          name: 'Total External Examinations',
+          label: 'Total External Examinations',
+          name: 'total_external_examinations',
           type: 'number',
         },
       ],
     },
     {
-      name: 'Fees Structure',
+      label: 'Fees Structure',
+      name: 'fees_structure',
       type: 'group',
       fields: [
         {
           type: 'row',
           fields: [
             {
-              name: 'Admission Fee',
+              label: 'Admission Fee',
+              name: 'admission_fee',
               type: 'number',
             },
             {
-              name: 'Starter Kit',
-              type: 'number',
-            },
-          ],
-        },
-        {
-          type: 'row',
-          fields: [
-            {
-              name: 'First Installment',
-              type: 'number',
-            },
-            {
-              name: 'Second Installment',
+              label: 'Starter Kit',
+              name: 'starter_kit',
               type: 'number',
             },
           ],
@@ -86,11 +81,28 @@ export const Course: CollectionConfig = {
           type: 'row',
           fields: [
             {
-              name: 'Internal exams',
+              label: 'First Installment',
+              name: 'first_installment',
               type: 'number',
             },
             {
-              name: 'Uniform and ID Card',
+              label: 'Second Installment',
+              name: 'second_installment',
+              type: 'number',
+            },
+          ],
+        },
+        {
+          type: 'row',
+          fields: [
+            {
+              label: 'Internal exams',
+              name: 'internal_exams',
+              type: 'number',
+            },
+            {
+              label: 'Uniform and ID Card',
+              name: 'uniform_and_id_card',
               type: 'number',
             },
           ],
